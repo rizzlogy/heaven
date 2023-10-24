@@ -6,9 +6,10 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<audio autoplay hidden loop>
-  <source src="./play.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
+<iframe src="./play.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+</iframe> 
+<audio autoplay hidden loop id="playAudio">
+    <source src="./play.mp3" type="audio/mpeg">
 </audio>
 <div class="text-container">
   <div class="title">RizzyFuzz<br>
@@ -32,5 +33,14 @@
 
 <canvas id="canvas"></canvas>
   <script type="module" src="./script.js"></script>
+  <script>
+    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+  if (!isChrome){
+      $('#iframeAudio').remove()
+  }
+  else {
+      $('#playAudio').remove() // just to make sure that it will not have 2x audio in the background 
+  }
+  </script>
 </body>
 </html>
